@@ -160,7 +160,14 @@
          <p><span class="time">2024/05/06 AM 5:20 (になってしまった。。。</span></p>
     </div>
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
+(function() {
+  "use strict";
+  if (window.location.search.includes("fbclid")) {
+    let url = new URL(window.location);
+    url.searchParams.delete("fbclid");
+    window.history.replaceState({}, document.title, url.pathname + url.search);
+  }
+})();    document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(function (heading) {
     heading.innerHTML = `<a href="#${heading.id}" style="text-decoration: none; color: inherit;">${heading.innerHTML}</a>`;
   });
