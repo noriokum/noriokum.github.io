@@ -172,6 +172,8 @@
     heading.innerHTML = `<a href="#${heading.id}" style="text-decoration: none; color: inherit;">${heading.innerHTML}</a>`;
   });
 });
+let icon = document.createElement("span"); icon.classList.add("copy-icon"); icon.innerHTML = "📋"; // クリップボードアイコン icon.title = "リンクをコピー"; // クリックでコピー
+icon.addEventListener("click", function () { let url = window.location.origin + window.location.pathname + "#" + heading.id; navigator.clipboard.writeText(url).then(() => { icon.innerHTML = "✔ Copied!"; setTimeout(() => icon.innerHTML = "📋", 2000); // 2秒後に戻す }).catch(err => console.error("コピー失敗:", err)); }); heading.appendChild(icon); }); }); 
 </script>
  </body>
  </html>
